@@ -1,0 +1,281 @@
+{
+  "name": "Categories",
+  "children": [
+    {
+      "name": "GROUPS",
+      "children": [
+        {
+          "name": "Children/youth",
+          "children": [
+            {
+              "name": "Anti-Discrimination"
+            },
+            {
+              "name": "Disabled persons"
+            },
+            {
+              "name": "Elderly/Age"
+            },
+            {
+              "name": "Indigenous people"
+            },
+            {
+              "name": "Migrant workers"
+            },
+            {
+              "name": "Racial/ethnic/national group"
+            },
+            {
+              "name": "Refugees/displaced persons"
+            },
+            {
+              "name": "Religious/groups"
+            },
+            {
+              "name": "Social class"
+            },
+            {
+              "name": "Other"
+            }
+          ]
+        },
+        {
+          "name": "Rome",
+          "children": [
+            {
+              "name": "Annabelle Maslowski"
+            },
+            {
+              "name": "Christian Foran"
+            },
+            {
+              "name": "Darryl Baylis"
+            },
+            {
+              "name": "Edwina Ericksen"
+            },
+            {
+              "name": "Erik Bartolo"
+            },
+            {
+              "name": "Howard Bayne"
+            },
+            {
+              "name": "Jamie Doxey"
+            },
+            {
+              "name": "Jodi Steinbach"
+            },
+            {
+              "name": "Kurt Linquist"
+            },
+            {
+              "name": "Leah Byron"
+            },
+            {
+              "name": "Louisa Shoe"
+            },
+            {
+              "name": "Marilyn Dinkins"
+            },
+            {
+              "name": "Nelson Friley"
+            },
+            {
+              "name": "Patsy Haffner"
+            },
+            {
+              "name": "Richard Grice"
+            },
+            {
+              "name": "Ryan Herrin"
+            },
+            {
+              "name": "Sofia Boros"
+            },
+            {
+              "name": "Tanisha Swicegood"
+            },
+            {
+              "name": "Tyrone Depue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "South Africa",
+      "children": [
+        {
+          "name": "Cape Town",
+          "children": [
+            {
+              "name": "Amber Fick"
+            },
+            {
+              "name": "Becky Lydon"
+            },
+            {
+              "name": "Clinton Bisignano"
+            },
+            {
+              "name": "Dolores Rizzo"
+            },
+            {
+              "name": "Elnora Rehkop"
+            },
+            {
+              "name": "Gay Vangieson"
+            },
+            {
+              "name": "Hugh Pounders"
+            },
+            {
+              "name": "Javier Sokoloski"
+            },
+            {
+              "name": "Julianne Oriley"
+            },
+            {
+              "name": "Lakisha Drozd"
+            },
+            {
+              "name": "Lilia Hildebrant"
+            },
+            {
+              "name": "Madeline Springer"
+            },
+            {
+              "name": "Milagros Benny"
+            },
+            {
+              "name": "Lakisha Drozd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "United States",
+      "children": [
+        {
+          "name": "Chicago",
+          "children": [
+            {
+              "name": "Amie Giambrone"
+            },
+            {
+              "name": "Carlene Bevans"
+            },
+            {
+              "name": "Clinton Dillahunt"
+            },
+            {
+              "name": "Dona Riggenbach"
+            },
+            {
+              "name": "Eric Sparrow"
+            },
+            {
+              "name": "Gertrude Hansen"
+            },
+            {
+              "name": "Jacquelyn Santillan"
+            },
+            {
+              "name": "Jeanie Nakken"
+            },
+            {
+              "name": "Julio Gheen"
+            },
+            {
+              "name": "Lance Simson"
+            },
+            {
+              "name": "Loraine Fane"
+            },
+            {
+              "name": "Mallory Skow"
+            },
+            {
+              "name": "Neil Volker"
+            },
+            {
+              "name": "Noreen Wyble"
+            },
+            {
+              "name": "Penelope Cunniffe"
+            },
+            {
+              "name": "Rosalinda Mcgonigle"
+            },
+            {
+              "name": "Saundra Goris"
+            },
+            {
+              "name": "Steven Woody"
+            },
+            {
+              "name": "Ted Laurich"
+            },
+            {
+              "name": "Tyrone Garoutte"
+            }
+          ]
+        },
+        {
+          "name": "New York",
+          "children": [
+            {
+              "name": "Angela Moffatt"
+            },
+            {
+              "name": "Chandra Mccaskey"
+            },
+            {
+              "name": "Craig Broadus"
+            },
+            {
+              "name": "Earl Frazer"
+            },
+            {
+              "name": "Becky Lydon"
+            },
+            {
+              "name": "Clinton Bisignano"
+            }
+          ]
+        },
+        {
+          "name": "Seattle",
+          "children": [
+            {
+              "name": "Anthony Calkins"
+            },
+            {
+              "name": "Clara Lilley"
+            },
+            {
+              "name": "Daughdrill Smith"
+            },
+            {
+              "name": "Edwina Saunder"
+            },
+            {
+              "name": "Fred Raines"
+            },
+            {
+              "name": "Hugh Mcgown"
+            },
+            {
+              "name": "Max Brantner"
+            },
+            {
+              "name": "Noreen Wiens"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

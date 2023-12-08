@@ -2,9 +2,6 @@
 "nodes":[
 {"node":0,"name":"2015"},
 {"node":1,"name":"Valor 0"},
-{"node":2,"name":"Valor 1"},
-{"node":3,"name":"Valor 2"},
-{"node":4,"name":"Valor 3"},
 {"node":5,"name":"Children/Youth"},
 {"node":6,"name":"Disabled persons"},
 {"node":7,"name":"Elderly/Age"},

@@ -80,7 +80,7 @@
 <div id='g1'></div>    
 <div id='g2'></div>    
     
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 <script>
 // Exemple gràfic frame 1
@@ -108,6 +108,7 @@
         var grafic2 = d3.select('#g2')
 
         fa_grafic= function(ruta,grafic) {
+          console.log(ruta,grafic);
                     d3.json(ruta, function (error, data) {
 
                         var width = 890, height = 500;
@@ -487,7 +488,7 @@ d3.sankey = function() {
     </script>    
     
     
-<select name="process1"  id="cmb1" onchange="fa_grafic('/data/json/sankey_' + this.value + '.json','g1')">
+<select name="process1"  id="cmb1" onchange="fa_grafic('./data/json/sankey_' + this.value + '.json','g1')">
             <option value="1">Afghanistan: 1990s Taliban process</option>
             <option value="2">Afghanistan: 2000s Post-intervention process</option>
             <option value="3">Algeria: Bouteflika Process</option>
@@ -640,7 +641,7 @@ d3.sankey = function() {
             <option value="202">Burundi: Local Process</option>
             <option value="203">Mali-Dogon-Fulani Local Conflict</option>
         </select> 
-    <select name="process2"  id="cmb2" onchange="fa_grafic('/data/json/sankey_' + this.value + '.json','g2')">
+    <select name="process2"  id="cmb2" onchange="fa_grafic('./data/json/sankey_' + this.value + '.json','g2')">
             <option value="1">Afghanistan: 1990s Taliban process</option>
             <option value="2">Afghanistan: 2000s Post-intervention process</option>
             <option value="3">Algeria: Bouteflika Process</option>

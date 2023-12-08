@@ -1,0 +1,26 @@
+{
+"nodes":[
+    {"node":0, "name":"1994"},
+    {"node":1, "name":"1995"},
+    {"node":2, "name":"1996"},
+    {"node":3, "name":"1999"},
+    {"node":4, "name":"2005"},  
+    {"node":5, "name":"Valor 0"},
+    {"node":6, "name":"Valor 1"},
+    {"node":7, "name":"Valor 2"},
+    {"node":8, "name":"Valor 3"},
+    {"node":9, "name":"Children/Youth"}
+],
+"links":[
+    {"source":0, "target":5, "value":9},
+    {"source":1, "target":5, "value":8},
+    {"source":2, "target":5, "value":9},
+    {"source":3, "target":5, "value":10},
+    {"source":4, "target":5, "value":9},
+    {"source":0, "target":8, "value":1},
+    {"source":1, "target":7, "value":2},
+    {"source":2, "target":8, "value":1},
+    {"source":4, "target":6, "value":1},
+    {"source":5, "target":9, "value":5},
+    {"source":8, "target":9, "value":1}
+] }

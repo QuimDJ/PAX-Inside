@@ -1,0 +1,702 @@
+{
+  "name": "Categories",
+  "children": [
+    {
+      "name": "GROUPS",
+      "children": [
+        {
+          "name": "Children/youth",
+          "children": [
+            {
+              "name": "Anti-Discrimination"
+            },
+            {
+              "name": "Rhetorical"
+            },
+            {
+              "name": "Substantive"
+            },
+            {
+              "name": "Other"
+            }
+          ]
+        },  
+        {
+          "name": "Disabled persons"
+        },
+        {
+          "name": "Elderly/Age"
+        },
+        {
+          "name": "Indigenous people"
+        },
+        {
+          "name": "Migrant workers"
+        },
+        {
+          "name": "Racial/ethnic/national group"
+        },
+        {
+          "name": "Refugees/displaced persons"
+        },
+        {
+          "name": "Religious/groups"
+        },
+        {
+          "name": "Social class"
+        },
+        {
+          "name": "Other"
+        }  
+      ]
+    },
+    {
+      "name": "GENDER",
+      "children": [
+        {
+          "name": "Women, girl and gender"
+        },
+        {
+          "name": "Men and boys",
+          "children":[{ 
+                       "name": "Gender neutral wording"
+                        },
+                      {
+                       "name":"Other"      
+                      }
+                       ]    
+        },
+        {
+          "name": "Sexual orientation"
+        },
+        {
+          "name": "LGBTI",
+          "children":[{ 
+                       "name": "LGTBI (positive)"
+                        },
+                      {
+                       "name":"LGTBI (negative)"      
+                      }
+                       ]
+        },
+        {
+          "name": "Family"
+        }  
+      ]
+    },
+    {
+      "name": "STATE DEFINITION",
+      "children": [
+        {
+          "name": "State Definition",
+          "children":[{ 
+                       "name": "Accession/Unification"
+                        },
+                      {
+                       "name":"Border delimitation"      
+                      },
+                      {
+                       "name":"Cross border provision"      
+                      },
+                      {
+                       "name":"Independence/Secession"      
+                      },
+                      {
+                       "name":"Nature of state (general)"      
+                      },
+                      {
+                       "name":"Referendum"      
+                      },
+                      {
+                       "name":"Self determination"      
+                      },
+                      {
+                       "name":"State configuration"      
+                      },
+                      {
+                       "name":"State symbols"      
+                      }
+                       ]    
+        } 
+      ]
+    },
+    {
+      "name": "GOVERNANCE",
+      "children": [
+        {
+          "name": "Political institutions",
+          "children":[{ 
+                       "name": "Temporary new institutions"
+                        },
+                      {
+                       "name":"General references"      
+                      },
+                      {
+                       "name":"New political institutions"      
+                      }
+                       ]    
+        },
+        {
+          "name": "Constitution's affirmation/renewal"
+        },
+        {
+          "name": "Constitutional reform/making"
+        },
+        {
+          "name": "Elections"
+        },
+        {
+          "name": "Electoral commission"
+        },
+        {
+          "name": "Political parties reform",
+          "children":[{ 
+                       "name": "Rebels transitioning to political"
+                        },
+                      {
+                       "name":"Other politicals parties reform"      
+                      }
+                       ]
+         },
+        {
+          "name": "Civil society"
+        },
+        {
+          "name": "Traditional/religious leaders"
+        },
+        {
+          "name": "Public administration"
+        }
+      ]
+    },
+    {
+      "name": "POWER SHARING",
+      "children": [
+        {
+          "name": "Political power sharing",
+          "children":[{ 
+                       "name":"Form of 'veto' or communal majority"
+                        },
+                      {
+                       "name":"International involment"      
+                      },
+                      {
+                       "name":"Executive coalition"      
+                      },
+                      {
+                       "name":"Segmental autonomy"      
+                      },
+                      {
+                       "name":"Other proportionality"      
+                      },
+                      {
+                       "name":"State level"      
+                      },
+                      {
+                       "name":"Proportionality in legislature"      
+                      },
+                      {
+                       "name":"Other"      
+                      },
+                      {
+                       "name":"Sub-state level"      
+                      }
+                       ]    
+        },
+        {
+          "name": "Territorial power sharing",
+          "children":[{ 
+                       "name":"Autonomous regions"
+                        },
+                      {
+                       "name":"Local/municipal government"      
+                      },
+                      {
+                       "name":"Federal or similar sub-divided government"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]  
+        },
+        {
+          "name": "Economic power sharing",
+          "children":[{ 
+                       "name":"Fiscal federalism"
+                        },
+                      {
+                       "name":"Sharing of resources"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]  
+        },
+        {
+          "name": "Military power sharing",
+          "children":[{ 
+                       "name":"Joint comand structures"
+                        },
+                      {
+                       "name":"Merger forces"      
+                      },
+                      {
+                       "name":"Proporcionality"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]  
+        }
+      ]
+    },
+    {
+      "name": "HUMAN RIGHTS AND EQUALITY",
+      "children": [
+        {
+          "name": "Human rights/Rule of Law"   
+        },
+        {
+          "name": "Equality"
+        },
+        {
+          "name": "Democracy"
+        },
+        {
+          "name": "Protection measures",
+          "children":[{ 
+                       "name":"Protection of groups"
+                        },
+                      {
+                       "name":"Protection of rights and legal frameworks"      
+                      },
+                      {
+                       "name":"Protection of civilians"      
+                      },
+                      {
+                       "name":"Other"      
+                      }
+                       ]
+         },
+        {
+          "name": "Human rights framework",
+          "children":[{ 
+                       "name":"Treaty incorporation"
+                        },
+                      {
+                       "name":"Isolated rights"      
+                      },
+                      {
+                       "name":"Bill of rights"      
+                      },
+                      {
+                       "name":"Other"      
+                      }
+                       ]
+        },
+        {
+          "name": "Civil and political rights",
+          "children":[{ 
+                       "name":"Life"
+                        },
+                      {
+                       "name":"Slavery"      
+                      },
+                      {
+                       "name":"Freedom of movement"      
+                      },
+                      {
+                       "name":"Privacy and family life"      
+                      },
+                      {
+                       "name":"Torture"      
+                      },
+                      {
+                       "name":"Liberty and security of person"      
+                      },
+                      {
+                       "name":"Fredom of association"      
+                      },
+                      {
+                       "name":"Vote and take part"      
+                      },
+                      {
+                       "name":"Freedom of speech"      
+                      },
+                      {
+                       "name":"Equality"      
+                      },
+                      {
+                       "name":"Human treatment in detention"      
+                      },
+                      {
+                       "name":"Fair trial"      
+                      },
+                      {
+                       "name":"Thought, opinion, conscience and religion"      
+                      },
+                      {
+                       "name":"Other"      
+                      }
+                       ]
+        },
+        {
+          "name": "Socio-economic rights",
+          "children":[{ 
+                       "name":"Health"
+                        },
+                      {
+                       "name":"Shelter/housing"      
+                      },
+                      {
+                       "name":"Property"      
+                      },
+                      {
+                       "name":"Education"      
+                      },
+                      {
+                       "name":"Social security"      
+                      },
+                      {
+                       "name":"Work"      
+                      },
+                      {
+                       "name":"Adequate standard of living"      
+                      },
+                      {
+                       "name":"Cultural life"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]
+        },
+        {
+          "name": "NHRI",
+          "children":[{ 
+                       "name":"Mentions of NHRI"
+                        },
+                      {
+                       "name":"New or fundamentaly revised NHRI"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]
+        },
+        {
+          "name": "Regional or international human rights institutions",
+          "children":[{ 
+                       "name":"Body tasked"
+                        },
+                      {
+                       "name":"Monitoring calls"      
+                      },
+                      {
+                       "name":"Other"      
+                      }]
+        },
+        {
+          "name": "Mobility/access"
+        },
+        {
+          "name": "Detention procedures"
+        },
+        {
+          "name": "Media and comunication",
+          "children":[{ 
+                       "name":"Governance of media"
+                        },
+                      {
+                       "name":"Media roles"      
+                      },
+                      {
+                       "name":"Media logistics"      
+                      },
+                      {
+                       "name":"Other"      
+                      }
+                       ]
+        },
+        {
+          "name": "Citizenship",
+          "children":[{ 
+                       "name":"Citizens, specific rights"
+                        },
+                      {
+                       "name":"Citizen delimitation"      
+                      },
+                      {
+                       "name":"Citizen, general"      
+                      },
+                      {
+                       "name":"Citizenship other"      
+                      }
+                       ]
+        }
+      ]
+    },
+    {
+      "name": "JUSTICE SECTOR REFORM",
+      "children": [
+        {
+          "name": "Criminal justice emergency law",
+          "children":[{ 
+                       "name": "Criminal Justice System reform"
+                        },
+                      { 
+                       "name": "Delimitation of powers in Criminal Justice System"
+                        },
+                      {
+                       "name":"Reform to specific laws"      
+                      }
+                       ]    
+        },
+        {
+          "name": "State of emergency"
+        },
+        {
+          "name": "Judiciary and courts"
+        },
+        {
+          "name": "Prisons and detention"
+        },
+        {
+          "name": "Traditional laws"
+        }
+      ]
+    },
+    {
+      "name": "SOCIO-ECONOMIC RECONSTRUCTION",
+      "children": [
+        {
+          "name": "Development or socio-economic reconstruction",
+          "children":[{ 
+                       "name": "Infrastructure and reconstruction"
+                        },
+                      { 
+                       "name": "Socio-economic development"
+                        },
+                      {
+                       "name":"Humanitarian assistance"      
+                      }
+                       ]    
+        },
+        {
+          "name": "National economic"
+        },
+        {
+          "name": "Natural resources"
+        },
+        {
+          "name": "International funds"
+        },
+        {
+          "name": "Business"
+        },
+        {
+          "name": "Taxation",
+          "children":[{ 
+                       "name": "Power of tax"
+                        },
+                      { 
+                       "name": "Reform of taxation"
+                        },
+                      {
+                       "name":"Other"      
+                      }
+                       ]
+        },
+        {
+          "name": "Banks",
+          "children":[{ 
+                       "name": "International finance"
+                        },
+                      { 
+                       "name": "Central bank"
+                        },
+                      {
+                       "name":"Cross-border financial flows"      
+                      },
+                      {
+                       "name":"Personal or commercial banking"      
+                      }
+                       ]
+        }
+      ]
+    },
+    {
+      "name": "LAND, PROPERTYAND ENVIRONMENT",
+      "children": [
+        {
+          "name": "Land reform/rights",
+          "children":[{ 
+                       "name": "Land reform and management"
+                        },
+                      { 
+                       "name": "Property return and restitution"
+                        },
+                      {
+                       "name":"Other land rights"      
+                      }
+                       ]    
+        },
+        {
+          "name": "Pastoralist/nomadism rights"
+        },
+        {
+          "name": "Cultural heritage",
+          "children":[{ 
+                       "name": "Intangible"
+                        },
+                      { 
+                       "name": "Promotion"
+                        },
+                      {
+                       "name":"Tangible"      
+                      },
+                      {
+                       "name":"Other"      
+                      }
+                       ]    
+        },
+        {
+          "name": "Environment"
+        },
+        {
+          "name": "Water or riparian rights or access"
+        }
+      ]
+    },
+    {
+      "name": "SECURITY SECTOR",
+      "children": [{
+                      "name": "Security guarantees"
+                    },
+                    {
+                      "name": "Ceasefire",
+                      "children":[{ 
+                                   "name": "General commitments"
+                                    },
+                                  { 
+                                   "name": "Ceasefire provision"
+                                    }
+                                   ]    
+                    },
+                    {
+                      "name": "Police"
+                    },
+                    {
+                      "name": "Armed forces"
+                    },
+                    {
+                      "name": "DDR",
+                      "children":[{ 
+                                   "name": "Demilitarisation provisions"
+                                    },
+                                  { 
+                                   "name": "DDR programmes"
+                                    }
+                                   ]    
+                    },
+                    {
+                      "name": "Intelligence services"
+                    },
+                    {
+                      "name": "Parastatal/rebel and opposition group forces"
+                    },
+                    {
+                      "name": "Withdrawal of foreign forces"
+                    },
+                    {
+                      "name": "Corruption"
+                    },
+                    {
+                      "name": "Crime/organised crime"
+                    },
+                    {
+                      "name": "Drugs"
+                    },
+                    {
+                      "name": "Terrorism"
+                    }
+                  ]
+    },
+    {
+      "name": "TRANSITIONAL JUSTICE",
+      "children": [{
+                      "name": "Transitional justice general"
+                    },
+                    {
+                      "name": "Amnesty/pardon",
+                      "children":[{ 
+                                   "name": "Power to amnesty"
+                                    },
+                                  { 
+                                   "name": "Amnesty/pardon proper"
+                                    },
+                                  { 
+                                   "name": "Amnesty prohibition"
+                                    },
+                                  { 
+                                   "name": "Relief of other sanctions"
+                                    }
+                                   ]    
+                    },
+                    {
+                      "name": "Courts",
+                      "children":[{ 
+                                   "name": "International courts"
+                                    },
+                                  { 
+                                   "name": "National courts"
+                                    }
+                                   ] 
+                    },
+                    {
+                      "name": "Mechanism"
+                    },
+                    {
+                      "name": "Prisoner release"    
+                    },
+                    {
+                      "name": "Vetting"
+                    },
+                    {
+                      "name": "Victims"
+                    },
+                    {
+                      "name": "Missing persons"
+                    },
+                    {
+                      "name": "Reaparations",
+                      "children":[{ 
+                                   "name": "Symbolic reparations"
+                                    },
+                                  { 
+                                   "name": "Material reparations"
+                                    }
+                                   ] 
+                    },
+                    {
+                      "name": "Reconciliation"
+                    }]
+    },
+    {"name": "IMPLEMENTATION",
+     "children": [ {
+                      "name": "UN signatory"
+                    },
+                   {
+                     "name": "Another international signatory" 
+                    },
+                   {
+                     "name": "Referendum for agreement" 
+                    },
+                   {
+                     "name": "International mission/force/similar" 
+                    },
+                   {
+                     "name": "Enforcement mechanism" 
+                    },
+                   {
+                     "name": "Source" 
+                    }
+                 ]
+    }
+  ]
+}

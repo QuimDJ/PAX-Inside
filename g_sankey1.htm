@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="Sandey_Groups" />
+    <meta charset="utf-8">
+    
+    
+<style>
+#process{
+         width:150px;   
+        }
+
+#wgtmsr option{
+         width:150px;   
+        }  
+#draw {
+        width: 950px;
+        height:500px;
+        background-color:lightblue;
+        object-fit: scale-down;
+    }
+    
+    
+</style>
+</head>
+<body>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <!--<script src="./sankey.js"></script>-->
+    <script>
+        //var urlParams = new URLSearchParams(window.location.search);
+        //var url = './data/' + urlParams.get("jfile");
+        fa_grafic= function(ruta) {
+                    d3.json(ruta, function (error, data) {
+
+                        var width = 950, height = 500;
+                        var svg = d3.select('#draw')
+                            .append('svg')
+                            .attr({
+                                width: width,
+                                height: height
+                            });
+
+                        var mainGroup = svg.append('g');
+
+                        var sankey = d3.sankey()
+                            .nodeWidth(36)
+                            .nodePadding(40)
+                            .size([width, height])
+                            .nodes(data.nodes)
+                            .links(data.links)
+                            .layout(10);
+
+                        mainGroup.append('g')
+                            .selectAll('g.link')
+                            .data(data.links)
+                            .enter()
+                            .append('path')
+                            .attr({
+                                d: sankey.link(),
+                                fill: 'none',
+                                stroke: '#000',
+                                'stroke-opacity': 0.2,
+                                'stroke-width': function (d) { return Math.max(1, d.dy) }
+                            })
+                            .sort(function (a, b) { return b.dy - a.dy; });
+
+                        var nodes = mainGroup.append('g')
+                            .selectAll('g.node')
+                            .data(data.nodes)
+                            .enter()
+                            .append('g')
+                            .attr('transform', function (d) {
+                                return 'translate(' + d.x + ',' + d.y + ')';
+                            });
+
+                        var color = d3.scale.category20();
+                        nodes.append('rect')
+                            .attr({
+                                height: function (d) { return d.dy; },
+                                width: sankey.nodeWidth(),
+                                fill: function (d, i) {
+                                    return d.color = color(i);
+                                },
+                                stroke: 'black'
+                            });
+
+                        nodes.append('text')
+                            .attr({
+                                x: -6,
+                                y: function (d) { return d.dy / 2; },
+                                dy: '.35em',
+                                'text-anchor': 'end'
+                            })
+                            .style('font', '10px sans-serif')
+                            .text(function (d) { return d.name; })
+                            .filter(function (d) { return d.x < width / 2; })
+                            .attr({
+                                x: 6 + sankey.nodeWidth(),
+                                'text-anchor': 'start'
+                            });
+                    });
+        }
+        
+d3.sankey = function() {
+  var sankey = {},
+      nodeWidth = 24,
+      nodePadding = 8,
+      size = [1, 1],
+      nodes = [],
+      links = [];
+
+  sankey.nodeWidth = function(_) {
+    if (!arguments.length) return nodeWidth;
+    nodeWidth = +_;
+    return sankey;
+  };
+
+  sankey.nodePadding = function(_) {
+    if (!arguments.length) return nodePadding;
+    nodePadding = +_;
+    return sankey;
+  };
+
+  sankey.nodes = function(_) {
+    if (!arguments.length) return nodes;
+    nodes = _;
+    return sankey;
+  };
+
+  sankey.links = function(_) {
+    if (!arguments.length) return links;
+    links = _;
+    return sankey;
+  };
+
+  sankey.size = function(_) {
+    if (!arguments.length) return size;
+    size = _;
+    return sankey;
+  };
+
+  sankey.layout = function(iterations) {
+    computeNodeLinks();
+    computeNodeValues();
+    computeNodeBreadths();
+    computeNodeDepths(iterations);
+    computeLinkDepths();
+    return sankey;
+  };
+
+  sankey.relayout = function() {
+    computeLinkDepths();
+    return sankey;
+  };
+
+  sankey.link = function() {
+    var curvature = .5;
+
+    function link(d) {
+      var x0 = d.source.x + d.source.dx,
+          x1 = d.target.x,
+          xi = d3.interpolateNumber(x0, x1),
+          x2 = xi(curvature),
+          x3 = xi(1 - curvature),
+          y0 = d.source.y + d.sy + d.dy / 2,
+          y1 = d.target.y + d.ty + d.dy / 2;
+      return "M" + x0 + "," + y0
+           + "C" + x2 + "," + y0
+           + " " + x3 + "," + y1
+           + " " + x1 + "," + y1;
+    }
+
+    link.curvature = function(_) {
+      if (!arguments.length) return curvature;
+      curvature = +_;
+      return link;
+    };
+
+    return link;
+  };
+
+  // Populate the sourceLinks and targetLinks for each node.
+  // Also, if the source and target are not objects, assume they are indices.
+  function computeNodeLinks() {
+    nodes.forEach(function(node) {
+      node.sourceLinks = [];
+      node.targetLinks = [];
+    });
+    links.forEach(function(link) {
+      var source = link.source,
+          target = link.target;
+      if (typeof source === "number") source = link.source = nodes[link.source];
+      if (typeof target === "number") target = link.target = nodes[link.target];
+      source.sourceLinks.push(link);
+      target.targetLinks.push(link);
+    });
+  }
+
+  // Compute the value (size) of each node by summing the associated links.
+  function computeNodeValues() {
+    nodes.forEach(function(node) {
+      node.value = Math.max(
+        d3.sum(node.sourceLinks, value),
+        d3.sum(node.targetLinks, value)
+      );
+    });
+  }
+
+  // Iteratively assign the breadth (x-position) for each node.
+  // Nodes are assigned the maximum breadth of incoming neighbors plus one;
+  // nodes with no incoming links are assigned breadth zero, while
+  // nodes with no outgoing links are assigned the maximum breadth.
+  function computeNodeBreadths() {
+    var remainingNodes = nodes,
+        nextNodes,
+        x = 0;
+
+    while (remainingNodes.length) {
+      nextNodes = [];
+      remainingNodes.forEach(function(node) {
+        node.x = x;
+        node.dx = nodeWidth;
+        node.sourceLinks.forEach(function(link) {
+          if (nextNodes.indexOf(link.target) < 0) {
+            nextNodes.push(link.target);
+          }
+        });
+      });
+      remainingNodes = nextNodes;
+      ++x;
+    }
+
+    //
+    moveSinksRight(x);
+    scaleNodeBreadths((size[0] - nodeWidth) / (x - 1));
+  }
+
+  function moveSourcesRight() {
+    nodes.forEach(function(node) {
+      if (!node.targetLinks.length) {
+        node.x = d3.min(node.sourceLinks, function(d) { return d.target.x; }) - 1;
+      }
+    });
+  }
+
+  function moveSinksRight(x) {
+    nodes.forEach(function(node) {
+      if (!node.sourceLinks.length) {
+        node.x = x - 1;
+      }
+    });
+  }
+
+  function scaleNodeBreadths(kx) {
+    nodes.forEach(function(node) {
+      node.x *= kx;
+    });
+  }
+
+  function computeNodeDepths(iterations) {
+    var nodesByBreadth = d3.nest()
+        .key(function(d) { return d.x; })
+        .sortKeys(d3.ascending)
+        .entries(nodes)
+        .map(function(d) { return d.values; });
+
+    //
+    initializeNodeDepth();
+    resolveCollisions();
+    for (var alpha = 1; iterations > 0; --iterations) {
+      relaxRightToLeft(alpha *= .99);
+      resolveCollisions();
+      relaxLeftToRight(alpha);
+      resolveCollisions();
+    }
+
+    function initializeNodeDepth() {
+      var ky = d3.min(nodesByBreadth, function(nodes) {
+        return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value);
+      });
+
+      nodesByBreadth.forEach(function(nodes) {
+        nodes.forEach(function(node, i) {
+          node.y = i;
+          node.dy = node.value * ky;
+        });
+      });
+
+      links.forEach(function(link) {
+        link.dy = link.value * ky;
+      });
+    }
+
+    function relaxLeftToRight(alpha) {
+      nodesByBreadth.forEach(function(nodes, breadth) {
+        nodes.forEach(function(node) {
+          if (node.targetLinks.length) {
+            var y = d3.sum(node.targetLinks, weightedSource) / d3.sum(node.targetLinks, value);
+            node.y += (y - center(node)) * alpha;
+          }
+        });
+      });
+
+      function weightedSource(link) {
+        return center(link.source) * link.value;
+      }
+    }
+
+    function relaxRightToLeft(alpha) {
+      nodesByBreadth.slice().reverse().forEach(function(nodes) {
+        nodes.forEach(function(node) {
+          if (node.sourceLinks.length) {
+            var y = d3.sum(node.sourceLinks, weightedTarget) / d3.sum(node.sourceLinks, value);
+            node.y += (y - center(node)) * alpha;
+          }
+        });
+      });
+
+      function weightedTarget(link) {
+        return center(link.target) * link.value;
+      }
+    }
+
+    function resolveCollisions() {
+      nodesByBreadth.forEach(function(nodes) {
+        var node,
+            dy,
+            y0 = 0,
+            n = nodes.length,
+            i;
+
+        // Push any overlapping nodes down.
+        nodes.sort(ascendingDepth);
+        for (i = 0; i < n; ++i) {
+          node = nodes[i];
+          dy = y0 - node.y;
+          if (dy > 0) node.y += dy;
+          y0 = node.y + node.dy + nodePadding;
+        }
+
+        // If the bottommost node goes outside the bounds, push it back up.
+        dy = y0 - nodePadding - size[1];
+        if (dy > 0) {
+          y0 = node.y -= dy;
+
+          // Push any overlapping nodes back up.
+          for (i = n - 2; i >= 0; --i) {
+            node = nodes[i];
+            dy = node.y + node.dy + nodePadding - y0;
+            if (dy > 0) node.y -= dy;
+            y0 = node.y;
+          }
+        }
+      });
+    }
+
+    function ascendingDepth(a, b) {
+      return a.y - b.y;
+    }
+  }
+
+  function computeLinkDepths() {
+    nodes.forEach(function(node) {
+      node.sourceLinks.sort(ascendingTargetDepth);
+      node.targetLinks.sort(ascendingSourceDepth);
+    });
+    nodes.forEach(function(node) {
+      var sy = 0, ty = 0;
+      node.sourceLinks.forEach(function(link) {
+        link.sy = sy;
+        sy += link.dy;
+      });
+      node.targetLinks.forEach(function(link) {
+        link.ty = ty;
+        ty += link.dy;
+      });
+    });
+
+    function ascendingSourceDepth(a, b) {
+      return a.source.y - b.source.y;
+    }
+
+    function ascendingTargetDepth(a, b) {
+      return a.target.y - b.target.y;
+    }
+  }
+
+  function center(node) {
+    return node.y + node.dy / 2;
+  }
+
+  function value(link) {
+    return link.value;
+  }
+
+  return sankey;
+};        
+    </script>
+ 
+    <div style="background-color:orange">
+        <h2>List of Peace Processes</h2>
+      <p><h3>PROCESS 1:</h3></p>
+    </div>
+    <div class="selector1">
+    <table>
+    <tr>
+        <td><select name="process"  id="pro1" onchange="fa_grafic('./data/json/sankey_' + this.value + '.json')">
+            <option value="1">Afghanistan: 1990s Taliban process</option>
+            <option value="2">Afghanistan: 2000s Post-intervention process</option>
+            <option value="3">Algeria: Bouteflika Process</option>
+            <option value="4">Angola: UNITA process</option>
+            <option value="5">Cote D'Ivoire: peace process</option>
+            <option value="6">African Great Lakes: Regional Process</option>
+            <option value="7">Argentina-UK: Falklands process</option>
+            <option value="8">Azerbaijan-Nagorno Karabakh: Process</option>
+            <option value="9">Burundi: 2015 onwards process</option>
+            <option value="10">Bougainville: peace process</option>
+            <option value="11">Bahrain: Reform-based peace process</option>
+            <option value="12">Bangladesh-Chittagong Hills Tracts: peace process</option>
+            <option value="13">Somalia/Puntland: Local Processes</option>
+            <option value="16">CAR: Bangui process</option>
+            <option value="17">CAR: coups and rebellions process</option>
+            <option value="18">Comoros-Anjouan islands peace process</option>
+            <option value="19">Burundi: Arusha and related peace process</option>
+            <option value="20">Cambodian peace process</option>
+            <option value="21">Cameroon-Nigeria border peace process</option>
+            <option value="22">Russia-China-Central Asian borders interstate process</option>
+            <option value="23">Djibouti: FRUD process</option>
+            <option value="24">Darfur-Sudan peace process</option>
+            <option value="25">Chad: 'third war' process</option>
+            <option value="26">Chad-Libya border peace process</option>
+            <option value="27">Sudan: Local Peace Processes</option>
+            <option value="28">China-India border dispute peace process</option>
+            <option value="29">Chad: Fourth War Process</option>
+            <option value="30">China-Russia border dispute peace process</option>
+            <option value="31">DRC: Second Congo war process</option>
+            <option value="32">Nicaragua contra process</option>
+            <option value="33">India-Darjeeling peace process</option>
+            <option value="34">DRC: Eastern DRC processes</option>
+            <option value="35">US-North Korea interstate process</option>
+            <option value="36">Intra-Palestine agreements</option>
+            <option value="37">Djibouti-Eritrea border dispute peace process</option>
+            <option value="38">Colombia VI - Government-ELN post-2015 process</option>
+            <option value="39">Ecuador-Peru border dispute peace process</option>
+            <option value="40">El Salvador peace process</option>
+            <option value="41">Eritrea-Ethiopia border dispute peace process</option>
+            <option value="42">Eritrea-Sudan peace process</option>
+            <option value="43">Ethiopia peace process</option>
+            <option value="44">Ogaden peace process</option>
+            <option value="45">Yemen Inter-group Agreements</option>
+            <option value="46">Libyan transitional process</option>
+            <option value="47">Gabon peace process</option>
+            <option value="48">Abkhazia peace process</option>
+            <option value="49">South Ossetia peace process</option>
+            <option value="50">Niger local agreements</option>
+            <option value="51">Guatemala peace process</option>
+            <option value="52">Guinea Bissau peace process</option>
+            <option value="53">Rwanda-RPF process</option>
+            <option value="54">Haitian peace process</option>
+            <option value="55">Honduran constitutional crisis process</option>
+            <option value="56">India Bodoland peace process</option>
+            <option value="57">India-Hmar-Bodoland peace process</option>
+            <option value="58">India-Nagaland peace process</option>
+            <option value="59">India-Pakistan border and related process</option>
+            <option value="60">India-Tripura peace process</option>
+            <option value="61">Indonesia-Aceh peace process</option>
+            <option value="62">Moluccas peace process</option>
+            <option value="63">East Timor-Indonesia peace process</option>
+            <option value="64">Iraq peace process - first Iraq war</option>
+            <option value="65">Iraq peace process - second Iraq war</option>
+            <option value="66">Rwanda-1990s international agreements</option>
+            <option value="67">Casamance process</option>
+            <option value="68">Northern Ireland peace process</option>
+            <option value="69">Israel-Palestine peace process</option>
+            <option value="70">Israel-Lebanon peace process</option>
+            <option value="71">Kenya peace process</option>
+            <option value="72">Lebanon peace process</option>
+            <option value="73">Lebanon-Syria conflict resolution process</option>
+            <option value="74">Lesotho process</option>
+            <option value="75">Liberia peace process</option>
+            <option value="76">Libyan peace process</option>
+            <option value="77">Sierra Leone peace process</option>
+            <option value="78">Libyan local processes</option>
+            <option value="79">Madagascar peace process</option>
+            <option value="81">Mali-Azawad Inter-Azawad peace process</option>
+            <option value="82">Mexico-Chiapas peace process</option>
+            <option value="83">Moldova Transdniestria process</option>
+            <option value="84">Morocco-Western Sahara peace process</option>
+            <option value="85">Mozambique process in the 90s</option>
+            <option value="86">Mozambique process - recent</option>
+            <option value="87">Myanmar ceasefires process with ethnic armed groups</option>
+            <option value="88">Nepal peace process</option>
+            <option value="89">Solomon Islands peace process</option>
+            <option value="90">Niger peace process</option>
+            <option value="91">North Korea - South Korea interstate process</option>
+            <option value="92">Eastern Sudanese Peace Process</option>
+            <option value="93">Pakistan-Taliban process</option>
+            <option value="94">Somalia Peace Process</option>
+            <option value="95">Philippines-NDF process</option>
+            <option value="96">Philippines - Cordillera process</option>
+            <option value="97">Philippines - Mindanao process</option>
+            <option value="98">RAM process</option>
+            <option value="99">Republic of Congo peace process</option>
+            <option value="100">Chechnya peace process</option>
+            <option value="101">DRC: local agreements (East)</option>
+            <option value="102">Guinea peace process</option>
+            <option value="103">Saudi Arabia - Yemen Border process</option>
+            <option value="104">Kurdistan/Iraq territorial conflict</option>
+            <option value="105">South Sudan: Local agreements</option>
+            <option value="106">Colombia I - Gaviria</option>
+            <option value="107">Colombia II - Samper</option>
+            <option value="108">Colombia III - Arango</option>
+            <option value="109">Colombia IV - Uribe</option>
+            <option value="110">Colombia V - Santos</option>
+            <option value="111">Somalia-Puntland Peace Process</option>
+            <option value="112">Somali Local Peace Processes</option>
+            <option value="113">Somaliland-Puntland Peace Process</option>
+            <option value="114">South Africa peace process</option>
+            <option value="115">South Africa - Namibia process</option>
+            <option value="116">South Sudan post-secession process</option>
+            <option value="117">Intra-Kurdish process</option>
+            <option value="118">Sudanese peace process</option>
+            <option value="119">North - South Sudan secession process</option>
+            <option value="120">Kordofan - Blue Nile - Abyei process</option>
+            <option value="121">Nigeria - local agreements</option>
+            <option value="122">Spain - Basque internal process</option>
+            <option value="123">Sri Lanka constitutional reform process</option>
+            <option value="124">Sri Lanka LTTE 2000s process</option>
+            <option value="130">Syrian peace process</option>
+            <option value="131">Tajikistan peace process</option>
+            <option value="132">Thailand peace process</option>
+            <option value="133">Togo peace process</option>
+            <option value="134">Tunisia reform process</option>
+            <option value="135">Uganda peace process</option>
+            <option value="136">Ukraine peace process</option>
+            <option value="137">Yemen unification process</option>
+            <option value="138">Yemen peace process</option>
+            <option value="139">Zimbabwe post-election process</option>
+            <option value="140">Bosnia peace process</option>
+            <option value="141">Dissolution of Yugoslavia</option>
+            <option value="145">Croatia negotiation process</option>
+            <option value="148">Local peace processes in Bosnia</option>
+            <option value="149">Kosovo process</option>
+            <option value="150">Presevo Valley process</option>
+            <option value="151">Macedonia peace process</option>
+            <option value="170">India-Assam agreement</option>
+            <option value="174">Intra-Syrian Process (state/non-state)</option>
+            <option value="175">Chad-Sudan Agreements</option>
+            <option value="176">India - Manipur</option>
+            <option value="177">Nigeria - Plateau State Process</option>
+            <option value="178">Cabinda process</option>
+            <option value="179">Syrian Local Agreements</option>
+            <option value="180">Kenya Local Agreements</option>
+            <option value="181">Philippines-Mindanao: Local Processes</option>
+            <option value="200">Post-WWII Germany normalisation process</option>
+            <option value="201">Kosovo-Serbia Normalisation Process</option>
+            <option value="202">Burundi: Local Process</option>
+            <option value="203">Mali-Dogon-Fulani Local Conflict</option>
+        </select></td>
+        <td><span colspan=2></span></td>
+        <td><input type="button"  value="CLEAN" onclick="window.location.reload();"></td>
+        </tr>
+    </table>
+</div><br>
+    <div id="draw" width="500">
+    </div>
+  
+</body>
+</html>
